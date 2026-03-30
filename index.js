@@ -31,4 +31,13 @@ app.patch("/func/:id", async (req, res) => {
     res.sendStatus(200);
 })
 
+app.delete("/func/:id", async (req, res) => {
+    const rows = await db.deletaFunc(req.params.id);
+    if (rows === 0) {
+        res.status(404).json({ message: "esse funcionario não existe" });
+    } else {
+        res.sendStatus(200);
+    }
+})
+
 app.listen(port);

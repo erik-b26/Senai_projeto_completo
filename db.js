@@ -41,5 +41,12 @@ export async function alteraFunc(Id, funcionario) {
     await client.query(sql, [funcionario.nome, funcionario.cod_setor, funcionario.salario, funcionario.email, Id]);
 }
 
+export async function deletaFunc(Id) {
+    const client = await connect();
+    const sql = "DELETE FROM funcionario WHERE matricula=$1";
+    const result = await client.query(sql, [Id]);
+    return result.rowCount;
+}
+
 
 connect();
